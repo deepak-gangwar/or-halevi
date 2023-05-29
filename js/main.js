@@ -61,7 +61,32 @@ if(isHomepage) {
     })
 }
 
+// used in setting tweens
+const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+const scrollX = window.scrollX || window.pageXOffset
+const scrollY = window.scrollY || window.pageYOffset
 
+
+// DEFINE ANIMATIONS FOR INDIVIDUAL PAGES
+// ======================================
+
+function pageHomeEntry(tl) {
+    tl.from('.home__title', { opacity: 0, duration: 0.8 }, 0)
+}
+
+function pageHomeLeave() {
+
+}
+
+function pageProjectEntry(tl) {
+    tl.from('.controls__icon', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+    tl.from('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+}
+
+function pageProjectLeave(tl, commonOpts) {
+
+}
 
 
 
@@ -73,10 +98,7 @@ function init() {
         const page = document.querySelector('#intro')
         let isHome = page.classList.contains('is-home') ? true : false
 
-        const viewportWidth = window.innerWidth || document.documentElement.clientWidth
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight
-        const scrollX = window.scrollX || window.pageXOffset
-        const scrollY = window.scrollY || window.pageYOffset
+        
 
         const tl = gsap.timeline()
         const commonOpts = {
@@ -120,8 +142,9 @@ function init() {
             // transform item to original position
             tl.to(projectImgWrapper, { width: item.width, height: item.height, x: item.posX, y: item.posY, rotate: "0", ...commonOpts }, commonOpts.duration)
 
-            // hide the controls
+            // hide the controls and project title
             tl.to('.controls__icon', { y: "110%", ...commonOpts }, 0)
+            tl.to('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
             
         }
         return tl
@@ -130,8 +153,9 @@ function init() {
     function loaderAway() {
         // TODO: run this depending on page
         const tl = gsap.timeline()
-        tl.from('.home__title', { opacity: 0, duration: 0.8 }, 0)
-        tl.from('.controls__icon', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+        pageHomeEntry(tl)
+        pageProjectEntry(tl)
+
         return tl
     }
 
