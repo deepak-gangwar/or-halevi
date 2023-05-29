@@ -26,7 +26,7 @@ const sizes = {
     }
 }
 
-let currentHomeScrollPos = window.scrollX || window.pageXOffset
+let currentHomeScrollPos = window.scrollY || window.pageYOffset
 
 // to store the current position wrt gallery 
 const item = {
@@ -45,10 +45,10 @@ function updateCurrentItem(e) {
     item.el = target
     item.bounds = item.el.getBoundingClientRect()
     item.posX = item.bounds.x
-    item.posY = item.bounds.y
+    item.posY = item.bounds.y + window.scrollY
     item.width = item.bounds.width
     item.height = item.bounds.height
-    currentHomeScrollPos = window.scrollX || window.pageXOffset
+    currentHomeScrollPos = window.scrollY || window.pageYOffset
     console.log(item)
 }
 
@@ -82,7 +82,9 @@ function pageProjectEntry(tl) {
 
 function pageProjectLeave() {}
 
-
+let toHome = false
+let toProject = false
+let returnToY = item.posY
 
 function init() {
 
@@ -102,8 +104,10 @@ function init() {
             // Center of the viewport calculation
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
-            const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12
-            const midY = scrollY + viewportHeight / 2 - sizes.block.height / 2 - gallery.top
+            const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12 - item.posX
+            const midY = -document.querySelector('.img_wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
+            // const midY = scrollY + viewportHeight / 2 - sizes.block.height / 2 - gallery.top
+            currentHomeScrollPos = scrollY
 
             tl.to('.home__title', { opacity: 0, duration: 0.8 }, 0)
 
@@ -119,13 +123,17 @@ function init() {
             
             // scale up the image to larger dimension and translate to final position
             tl.to(imgWrapper, {
-                    width: sizes.large.width,
-                    height: sizes.large.height,
-                    x: viewportWidth * 0.1 - 12,
-                    y: scrollY + viewportHeight * 0.64 - item.posY,
-                    rotate: "0",
-                    ...commonOpts
+                width: sizes.large.width,
+                height: sizes.large.height,
+                x: viewportWidth * 0.1 - 12 - item.posX,
+                y: scrollY + viewportHeight * 0.64 - item.posY,
+                rotate: "0",
+                ...commonOpts
             }, commonOpts.duration)
+
+            toHome = false
+            toProject = true
+            returnToY = document.querySelector('.img_wrapper').getBoundingClientRect().top
         } else {
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
@@ -136,11 +144,15 @@ function init() {
             tl.to(projectImgWrapper, { width: sizes.block.width, height: sizes.block.height, x: destinationX, y: destinationY, rotate: "15deg", ...commonOpts }, 0)
 
             // transform item to original position
-            tl.to(projectImgWrapper, { width: item.width, height: item.height, x: item.posX, y: item.posY, rotate: "0", ...commonOpts }, commonOpts.duration)
+            tl.to(projectImgWrapper, { width: item.width, height: item.height, x: item.posX, y: returnToY, rotate: "0", ...commonOpts }, commonOpts.duration)
+            // tl.to(projectImgWrapper, { width: item.width, height: item.height, x: item.posX, y: item.posY, rotate: "0", ...commonOpts }, commonOpts.duration)
 
             // hide the controls and project title
             tl.to('.controls__icon', { y: "110%", ...commonOpts }, 0)
             tl.to('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+
+            toHome = true
+            toProject = false
         }
         return tl
     }
@@ -168,15 +180,16 @@ function init() {
     barba.hooks.after(() => {
         document.querySelector('html').classList.remove('is-transitioning')
         barba.wrapper.classList.remove('is-animating')
+        if(toHome) {
+            window.scrollTo(0, currentHomeScrollPos)
+        } else if (toProject) {
+            window.scrollTo(0, 0)
+        }
     })
 
     // scroll to the top of the page
     barba.hooks.enter(() => {
-        const page = document.querySelector('#intro')
-        let isHome = page.classList.contains('is-home') ? true : false
-        if(isHome) {
-            window.scrollTo(0, 0)
-        }
+        window.scrollTo(0, 0)
     })
 
     barba.init({

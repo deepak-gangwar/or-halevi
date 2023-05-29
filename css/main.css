@@ -14,7 +14,7 @@ body {
   font-family: tt;
   color: #DBDBDB;
   background-color: #080808;
-  min-height: 200vh;
+  min-height: 500vh;
 }
 
 a {
@@ -51,12 +51,13 @@ h1.home__title {
   height: 60vh;
   position: relative;
   margin: 100px auto;
+  padding-left: 100px;
 }
 
 .img_wrapper {
   position: absolute;
   top: 0;
-  left: 0;
+  /* left: 0; */
   /* width: 200px; */
   /* height: 200px; */
   width: 252px;
