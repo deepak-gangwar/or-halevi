@@ -1,0 +1,103 @@
+body {
+  font-family: Inter;
+  color: #DBDBDB;
+  background-color: #080808;
+  min-height: 200vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav {
+  padding-top: 2rem;
+}
+
+nav a  {
+  color: dodgerblue;
+  padding: 1rem;
+}
+
+.nav__logo {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gallery {
+  height: 50vh;
+  position: relative;
+  margin: 100px auto;
+}
+
+.img_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img_wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  /* width: 300px; */
+}
+
+.project_image {
+  width: 80vw;
+  height: 80vw;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  transform: translateX(calc(10vw - 12px)) translateY(64vh);
+  /* left: 50%;
+  transform: translateX(-50%) translateY(64vh); */
+}
+
+.project_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.icon_wrapper {
+  position: absolute;
+  right: 10vw;
+  transform-origin: right center;
+  transform: scale(0.8);
+  overflow: hidden;
+}
+
+.close_wrapper {
+  top: 80px;
+}
+
+.next__wrapper {
+  top: 125px;
+}
+
+.prev__wrapper {
+  top: 172px;
+}
+
+
+
+/* .project__title {
+  font-weight: normal;
+  text-transform: uppercase;
+  position: absolute;
+  top: 30vh;
+  left: 18vw;
+  font-size: 5rem;
+} */
