@@ -1,4 +1,4 @@
-// WHAT IS NEEDED FROM OUTSIDE
+// WHAT IS NEEDED FROM OUTSIDE (intro, js-pt, image_wrapper, project__img)
 // ===========================
 
 // - Add data-barba="wrapper" to body
@@ -10,10 +10,6 @@
 // - Specify block size and final sizes
 // - Define your gsap animaitons in the class ________  
 
-
-const gallery = {
-    top: document.querySelector('.gallery').getBoundingClientRect().y
-}
 
 const sizes = {
     block: {
@@ -49,7 +45,6 @@ function updateCurrentItem(e) {
     item.width = item.bounds.width
     item.height = item.bounds.height
     currentHomeScrollPos = window.scrollY || window.pageYOffset
-    console.log(item)
 }
 
 const pageContainer = document.getElementById("intro")
@@ -84,13 +79,17 @@ function pageProjectLeave() {}
 
 let toHome = false
 let toProject = false
-let returnToY = item.posY
+let returnToY = item.posY  // to restore the position (scroll restoration)
+
+
+// Main controller function
+// ========================
 
 function init() {
 
-    function loaderIn() {
-        const imgWrapper = document.querySelector('.img_wrapper')
-        const projectImgWrapper = document.querySelector('.project_image')
+    function pageLeaveAnim() {
+        const imgWrapper = document.querySelector('.img__wrapper')
+        const projectImgWrapper = document.querySelector('.project__img')
         const page = document.querySelector('#intro')
         let isHome = page.classList.contains('is-home') ? true : false
 
@@ -105,8 +104,7 @@ function init() {
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
             const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12 - item.posX
-            const midY = -document.querySelector('.img_wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
-            // const midY = scrollY + viewportHeight / 2 - sizes.block.height / 2 - gallery.top
+            const midY = -document.querySelector('.img__wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
             currentHomeScrollPos = scrollY
 
             tl.to('.home__title', { opacity: 0, duration: 0.8 }, 0)
@@ -133,7 +131,7 @@ function init() {
 
             toHome = false
             toProject = true
-            returnToY = document.querySelector('.img_wrapper').getBoundingClientRect().top
+            returnToY = document.querySelector('.img__wrapper').getBoundingClientRect().top
         } else {
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
@@ -157,7 +155,7 @@ function init() {
         return tl
     }
 
-    function loaderAway() {
+    function pageEntryAnim() {
         // TODO: run this depending on page
         const tl = gsap.timeline()
         pageHomeEntry(tl)
@@ -171,20 +169,13 @@ function init() {
     // =============
 
     // do something before the transition starts
-    barba.hooks.before(() => {
-        document.querySelector('html').classList.add('is-transitioning')
-        barba.wrapper.classList.add('is-animating')
-    })
+    barba.hooks.before(() => {})
 
     // do something after the transition finishes
     barba.hooks.after(() => {
-        document.querySelector('html').classList.remove('is-transitioning')
-        barba.wrapper.classList.remove('is-animating')
-        if(toHome) {
-            window.scrollTo(0, currentHomeScrollPos)
-        } else if (toProject) {
-            window.scrollTo(0, 0)
-        }
+        // scroll restoration
+        toHome && window.scrollTo(0, currentHomeScrollPos)
+        toProject && window.scrollTo(0, 0)
     })
 
     // scroll to the top of the page
@@ -196,10 +187,10 @@ function init() {
         transitions: [{
             async leave() {
                 // await because gsap animation return promise, we want that to finish
-                await loaderIn()
+                await pageLeaveAnim()
             },
             enter() {
-                loaderAway()
+                pageEntryAnim()
             }
         }]
     })

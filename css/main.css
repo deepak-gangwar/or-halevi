@@ -17,27 +17,15 @@ body {
   min-height: 500vh;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-nav {
-  padding-top: 2rem;
-}
-
-nav a  {
-  color: dodgerblue;
-  padding: 1rem;
-}
-
-h1.home__title {
+h1 {
   font-weight: normal;
-  font-family: pp;
-  max-width: 50vw;
-  margin: 10rem auto;
-  text-align: center;
-  line-height: 46px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .nav__logo {
@@ -47,6 +35,14 @@ h1.home__title {
   transform: translateX(-50%);
 }
 
+.home__title {
+  font-family: pp;
+  max-width: 50vw;
+  margin: 10rem auto;
+  text-align: center;
+  line-height: 46px;
+}
+
 .gallery {
   height: 60vh;
   position: relative;
@@ -54,12 +50,10 @@ h1.home__title {
   padding-left: 100px;
 }
 
-.img_wrapper {
+.img__wrapper {
   position: absolute;
   top: 0;
   /* left: 0; */
-  /* width: 200px; */
-  /* height: 200px; */
   width: 252px;
   height: 366px;
   border-radius: 4px;
@@ -67,34 +61,7 @@ h1.home__title {
   margin-right: auto;
 }
 
-.img_wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.project_image {
-  width: 80vw;
-  height: 80vw;
-  border-radius: 4px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: top left;
-  transform: translateX(calc(10vw - 12px)) translateY(64vh);
-  /* left: 50%;
-  transform: translateX(-50%) translateY(64vh); */
-}
-
-.project_image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.icon_wrapper {
+.controls {
   position: absolute;
   right: 10vw;
   transform-origin: right center;
@@ -102,18 +69,17 @@ h1.home__title {
   overflow: hidden;
 }
 
-.close_wrapper {
+.controls__close {
   top: 80px;
 }
 
-.next__wrapper {
+.controls__next {
   top: 125px;
 }
 
-.prev__wrapper {
+.controls__prev {
   top: 172px;
 }
-
 
 .project__title {
   overflow: hidden;
@@ -124,11 +90,20 @@ h1.home__title {
   top: 30vh;
   left: 18vw;
   font-size: 5rem;
-  font-weight: normal;
   text-transform: uppercase;
 }
 
-.project__span {
+.project__word {
   display: block;
-  transform: translateY(0px);
+}
+
+.project__img {
+  width: 80vw;
+  height: 80vw;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  transform: translateX(calc(10vw - 12px)) translateY(64vh);
 }
