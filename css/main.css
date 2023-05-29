@@ -48,7 +48,6 @@ nav a  {
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
-  /* width: 300px; */
 }
 
 .project_image {
@@ -90,14 +89,3 @@ nav a  {
 .prev__wrapper {
   top: 172px;
 }
-
-
-
-/* .project__title {
-  font-weight: normal;
-  text-transform: uppercase;
-  position: absolute;
-  top: 30vh;
-  left: 18vw;
-  font-size: 5rem;
-} */

@@ -1,13 +1,16 @@
 // see what page we are currently on and select targets based on that
 
+// WHAT IS NEEDED FROM OUTSIDE
+
+
 const gallery = {
     top: document.querySelector('.gallery').getBoundingClientRect().y
 }
 
 const sizes = {
     block: {
-        width: 200,
-        height: 200
+        width: 360,
+        height: 360
     },
     large: {
         width: "80vw",
@@ -76,8 +79,8 @@ function init() {
 
             // move image to the center, make it a block with some rotation
             tl.to(imgWrapper, { 
-                width: sizes.block.width,
-                height: sizes.block.height,
+                width: sizes.block.width, 
+                height: sizes.block.height, 
                 x: midX, 
                 y: midY, 
                 rotate: "15deg", 
@@ -85,31 +88,23 @@ function init() {
             })
             
             // scale up the image to larger dimension and translate to final position
-            tl.to(imgWrapper, 
-                {
+            tl.to(imgWrapper, {
                     width: sizes.large.width,
                     height: sizes.large.height,
                     x: viewportWidth * 0.1 - 12,
                     y: scrollY + viewportHeight * 0.64 - item.posY,
                     rotate: "0",
                     ...commonOpts
-                })
+            })
         } else {
-            const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2;
-            const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2;
+            const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2
+            const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2
 
             // shrink width to desired block
-            tl.to(projectImgWrapper, {
-                width: sizes.block.width,
-                height: sizes.block.height,
-                x: destinationX,
-                y: destinationY,
-                rotate: "15deg",  
-                ...commonOpts
-            }, 0)
+            tl.to(projectImgWrapper, { width: sizes.block.width, height: sizes.block.height, x: destinationX, y: destinationY, rotate: "15deg", ...commonOpts }, 0)
 
             // transform item to original position
-            tl.to(projectImgWrapper, { x: item.posX, y: item.posY, rotate: "0", ...commonOpts }, commonOpts.duration)
+            tl.to(projectImgWrapper, { width: item.width, height: item.height, x: item.posX, y: item.posY, rotate: "0", ...commonOpts }, commonOpts.duration)
 
             // hide the controls
             tl.to('.controls__icon', { y: "110%", ...commonOpts }, 0)
