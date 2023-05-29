@@ -1,6 +1,14 @@
-// see what page we are currently on and select targets based on that
-
 // WHAT IS NEEDED FROM OUTSIDE
+// ===========================
+
+// - Add data-barba="wrapper" to body
+// - Add id="intro" to page container that will change
+// - Also add data-barba="container" to this container
+// - Also add class="is-home" to identify pages
+
+// - Add class js-pt to the anchor/wrapper to make the image suitable for page transition
+// - Specify block size and final sizes
+// - Define your gsap animaitons in the class ________
 
 
 const gallery = {
