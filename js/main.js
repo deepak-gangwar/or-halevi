@@ -40,7 +40,7 @@ const item = {
 
 // update the current item
 function updateCurrentItem(e) {
-    const target = e.target.parentElement 
+    const target = e.target.parentElement
     // this gives the image wrapper which is clicked for page transition
     item.el = target
     item.bounds = item.el.getBoundingClientRect()
@@ -89,6 +89,8 @@ function init() {
             const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12
             const midY = scrollY + viewportHeight / 2 - sizes.block.height / 2 - gallery.top
 
+            tl.to('.home__title', { opacity: 0, duration: 0.8 }, 0)
+
             // move image to the center, make it a block with some rotation
             tl.to(imgWrapper, { 
                 width: sizes.block.width, 
@@ -97,7 +99,7 @@ function init() {
                 y: midY, 
                 rotate: "15deg", 
                 ...commonOpts 
-            })
+            }, 0)
             
             // scale up the image to larger dimension and translate to final position
             tl.to(imgWrapper, {
@@ -107,7 +109,7 @@ function init() {
                     y: scrollY + viewportHeight * 0.64 - item.posY,
                     rotate: "0",
                     ...commonOpts
-            })
+            }, commonOpts.duration)
         } else {
             const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2
             const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2
@@ -126,8 +128,11 @@ function init() {
     }
 
     function loaderAway() {
-        // TODO: run this when on project page
-        return gsap.from('.controls__icon', { y: "110%", duration: 1.8, ease: "expo.inOut" })
+        // TODO: run this depending on page
+        const tl = gsap.timeline()
+        tl.from('.home__title', { opacity: 0, duration: 0.8 }, 0)
+        tl.from('.controls__icon', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+        return tl
     }
 
 
