@@ -6,8 +6,8 @@ const gallery = {
 
 const sizes = {
     block: {
-        width: "200px",
-        height: "200px"
+        width: 200,
+        height: 200
     },
     large: {
         width: "80vw",
@@ -95,8 +95,8 @@ function init() {
                     ...commonOpts
                 })
         } else {
-            const destinationX = scrollX + viewportWidth / 2 - sizes.block.width;
-            const destinationY = scrollY + viewportHeight / 2 - sizes.block.height;
+            const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2;
+            const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2;
 
             // shrink width to desired block
             tl.to(projectImgWrapper, {
