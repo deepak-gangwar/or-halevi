@@ -1,5 +1,17 @@
+@font-face {
+  font-family: pp;
+  src: url('../assets/fonts/PPEiko-Thin.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: tt;
+  src: url('../assets/fonts/TTNorms-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
 body {
-  font-family: Inter;
+  font-family: tt;
   color: #DBDBDB;
   background-color: #080808;
   min-height: 200vh;
@@ -19,6 +31,15 @@ nav a  {
   padding: 1rem;
 }
 
+h1.home__title {
+  font-weight: normal;
+  font-family: pp;
+  max-width: 50vw;
+  margin: 10rem auto;
+  text-align: center;
+  line-height: 46px;
+}
+
 .nav__logo {
   position: absolute;
   top: 2rem;
@@ -27,7 +48,7 @@ nav a  {
 }
 
 .gallery {
-  height: 50vh;
+  height: 60vh;
   position: relative;
   margin: 100px auto;
 }
@@ -36,8 +57,10 @@ nav a  {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  /* width: 200px; */
+  /* height: 200px; */
+  width: 252px;
+  height: 366px;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;

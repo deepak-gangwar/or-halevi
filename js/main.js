@@ -18,6 +18,8 @@ const sizes = {
     }
 }
 
+let currentHomeScrollPos = window.scrollX || window.pageXOffset
+
 // to store the current position wrt gallery 
 const item = {
     el: null, 
@@ -38,6 +40,8 @@ function updateCurrentItem(e) {
     item.posY = item.bounds.y
     item.width = item.bounds.width
     item.height = item.bounds.height
+    currentHomeScrollPos = window.scrollX || window.pageXOffset
+    console.log(item)
 }
 
 const pageContainer = document.getElementById("intro")
@@ -74,8 +78,8 @@ function init() {
 
         if(isHome) {
             // Center of the viewport calculation
-            const midX = scrollX + viewportWidth / 2 - item.width / 2 - 12
-            const midY = scrollY + viewportHeight / 2 - item.height / 2 - gallery.top
+            const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12
+            const midY = scrollY + viewportHeight / 2 - sizes.block.height / 2 - gallery.top
 
             // move image to the center, make it a block with some rotation
             tl.to(imgWrapper, { 
@@ -126,13 +130,13 @@ function init() {
     barba.hooks.before(() => {
         document.querySelector('html').classList.add('is-transitioning')
         barba.wrapper.classList.add('is-animating')
-    });
+    })
 
     // do something after the transition finishes
     barba.hooks.after(() => {
         document.querySelector('html').classList.remove('is-transitioning')
         barba.wrapper.classList.remove('is-animating')
-    });
+    })
 
     // scroll to the top of the page
     barba.hooks.enter(() => {
@@ -141,7 +145,7 @@ function init() {
         if(isHome) {
             window.scrollTo(0, 0)
         }
-    });
+    })
 
     barba.init({
         transitions: [{
