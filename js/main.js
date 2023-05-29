@@ -8,7 +8,7 @@
 
 // - Add class js-pt to the anchor/wrapper to make the image suitable for page transition
 // - Specify block size and final sizes
-// - Define your gsap animaitons in the class ________
+// - Define your gsap animaitons in the class ________  
 
 
 const gallery = {
@@ -64,8 +64,6 @@ if(isHomepage) {
 // used in setting tweens
 const viewportWidth = window.innerWidth || document.documentElement.clientWidth
 const viewportHeight = window.innerHeight || document.documentElement.clientHeight
-const scrollX = window.scrollX || window.pageXOffset
-const scrollY = window.scrollY || window.pageYOffset
 
 
 // DEFINE ANIMATIONS FOR INDIVIDUAL PAGES
@@ -75,18 +73,14 @@ function pageHomeEntry(tl) {
     tl.from('.home__title', { opacity: 0, duration: 0.8 }, 0)
 }
 
-function pageHomeLeave() {
-
-}
+function pageHomeLeave() {}
 
 function pageProjectEntry(tl) {
     tl.from('.controls__icon', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
     tl.from('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
 }
 
-function pageProjectLeave(tl, commonOpts) {
-
-}
+function pageProjectLeave() {}
 
 
 
@@ -98,8 +92,6 @@ function init() {
         const page = document.querySelector('#intro')
         let isHome = page.classList.contains('is-home') ? true : false
 
-        
-
         const tl = gsap.timeline()
         const commonOpts = {
             duration: 1.8,
@@ -108,6 +100,8 @@ function init() {
 
         if(isHome) {
             // Center of the viewport calculation
+            const scrollX = window.scrollX || window.pageXOffset
+            const scrollY = window.scrollY || window.pageYOffset
             const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12
             const midY = scrollY + viewportHeight / 2 - sizes.block.height / 2 - gallery.top
 
@@ -133,6 +127,8 @@ function init() {
                     ...commonOpts
             }, commonOpts.duration)
         } else {
+            const scrollX = window.scrollX || window.pageXOffset
+            const scrollY = window.scrollY || window.pageYOffset
             const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2
             const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2
 
@@ -145,7 +141,6 @@ function init() {
             // hide the controls and project title
             tl.to('.controls__icon', { y: "110%", ...commonOpts }, 0)
             tl.to('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
-            
         }
         return tl
     }
