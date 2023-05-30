@@ -28,6 +28,26 @@ img {
   border-radius: 4px;
 }
 
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6rem;
+  height: 6rem;
+  font-size: 1vw;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0a0a0a;
+  transition: transform .4s cubic-bezier(0.16, 1, 0.3, 1),opacity .6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  cursor: pointer;
+}
+
 .nav__logo {
   position: absolute;
   top: 2rem;

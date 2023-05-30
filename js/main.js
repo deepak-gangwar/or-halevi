@@ -134,6 +134,8 @@ function init() {
             tl.to('.home__title', { opacity: 0, duration: 0.8 }, 0)
             tl.to('.subtitle__name span', {  opacity: 0, transform: "translateY(110%)", duration: 0.8 }, 0)
             tl.to('.subtitle__description span', {  opacity: 0, transform: "translateY(110%)", duration: 0.8 }, 0)
+            // tl.to('.cursor', { opacity: 0, duration: 0.6 }, 0)
+            tl.to(item.el, { pointerEvents: 'none', duration: 0 }, 0)
 
             const images = document.querySelectorAll('.img__wrapper')
             images.forEach(image => {
