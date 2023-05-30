@@ -54,11 +54,20 @@ img {
   position: absolute;
   top: 0;
   /* left: 0; */
-  width: 252px;
-  height: 366px;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.gallery__item1 {
+  width: 252px;
+  height: 366px;
+}
+
+.gallery__item2 {
+  left: 400px;
+  width: 352px;
+  height: 240px;
 }
 
 .controls {

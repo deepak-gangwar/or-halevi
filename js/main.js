@@ -72,7 +72,7 @@ function pageHomeLeave() {}
 
 function pageProjectEntry(tl) {
     tl.from('.controls__icon', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
-    tl.from('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+    tl.from('.project__word', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
 }
 
 function pageProjectLeave() {}
@@ -88,7 +88,8 @@ let returnToY = item.posY  // to restore the position (scroll restoration)
 function init() {
 
     function pageLeaveAnim() {
-        const imgWrapper = document.querySelector('.img__wrapper')
+        const imgWrapper = item.el
+        // const imgWrapper = document.querySelector('.img__wrapper')
         const projectImgWrapper = document.querySelector('.project__img')
         const page = document.querySelector('#intro')
         let isHome = page.classList.contains('is-home') ? true : false
@@ -104,6 +105,7 @@ function init() {
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
             const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12 - item.posX
+            // this is problematic because currently only selecting first image
             const midY = -document.querySelector('.img__wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
             currentHomeScrollPos = scrollY
 
@@ -147,7 +149,7 @@ function init() {
 
             // hide the controls and project title
             tl.to('.controls__icon', { y: "110%", ...commonOpts }, 0)
-            tl.to('.project__span', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
+            tl.to('.project__word', { y: "110%", duration: 1.8, ease: "expo.inOut" }, 0)
 
             toHome = true
             toProject = false
