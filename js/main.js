@@ -49,19 +49,28 @@ function updateCurrentItem(e) {
     item.bounds = item.el.getBoundingClientRect()
     item.posX = item.bounds.x
     item.posY = item.bounds.y + window.scrollY
+    item.top = item.bounds.top
     item.width = item.bounds.width
     item.height = item.bounds.height
     currentHomeScrollPos = window.scrollY || window.pageYOffset
 }
 
-const pageContainer = document.getElementById("intro")
-const isHomepage = pageContainer.classList.contains('is-home')
-if(isHomepage) {
+// const pageContainer = document.getElementById("intro")
+// const isHomepage = pageContainer.classList.contains('is-home')
+// if(isHomepage) {
+//     const items = document.querySelectorAll('.js-pt')
+//     items.forEach(item => {
+//         item.addEventListener('click', (e) => updateCurrentItem(e))
+//     })
+// }
+
+function addEvents() {
     const items = document.querySelectorAll('.js-pt')
     items.forEach(item => {
         item.addEventListener('click', (e) => updateCurrentItem(e))
     })
 }
+addEvents()
 
 // used in setting tweens
 // const viewportWidth = window.innerWidth || document.documentElement.clientWidth
@@ -95,8 +104,8 @@ let returnToY = item.posY  // to restore the position (scroll restoration)
 function init() {
 
     function pageLeaveAnim() {
-        // const imgWrapper = item.el
-        const imgWrapper = document.querySelector('.img__wrapper')
+        const imgWrapper = item.el
+        // const imgWrapper = document.querySelector('.img__wrapper')
         const projectImgWrapper = document.querySelector('.project__img')
         const page = document.querySelector('#intro')
         let isHome = page.classList.contains('is-home') ? true : false
@@ -115,7 +124,8 @@ function init() {
             const scrollY = window.scrollY || window.pageYOffset
             const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12 - item.posX
             // this is problematic because currently only selecting first image
-            const midY = -document.querySelector('.img__wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
+            // const midY = -document.querySelector('.img__wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
+            const midY = - item.top + viewportHeight / 2 - sizes.block.height / 2
             currentHomeScrollPos = scrollY
 
             tl.add(disableScroll())
@@ -136,7 +146,8 @@ function init() {
                 width: sizes.large.width,
                 height: sizes.large.height,
                 x: viewportWidth * 0.1 - 12 - item.posX,
-                y: viewportHeight * 0.64 - document.querySelector('.img__wrapper').getBoundingClientRect().top, // this is relative to its original position
+                y: viewportHeight * 0.64 - item.top, // this is relative to its original position
+                // y: viewportHeight * 0.64 - document.querySelector('.img__wrapper').getBoundingClientRect().top, // this is relative to its original position
                 // y: scrollY + viewportHeight * 0.64 - item.posY,
                 rotate: "0",
                 ...commonOpts
@@ -144,7 +155,8 @@ function init() {
 
             toHome = false
             toProject = true
-            returnToY = document.querySelector('.img__wrapper').getBoundingClientRect().top
+            returnToY = item.top
+            // returnToY = document.querySelector('.img__wrapper').getBoundingClientRect().top
         } else {
             const viewportWidth = window.innerWidth || document.documentElement.clientWidth
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight
@@ -178,6 +190,7 @@ function init() {
         pageHomeEntry(tl)
         pageProjectEntry(tl)
         tl.add(enableScroll())
+        addEvents()
         return tl
     }
 
