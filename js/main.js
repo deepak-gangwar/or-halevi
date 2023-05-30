@@ -10,6 +10,9 @@
 // - Specify block size and final sizes
 // - Define your gsap animaitons in the class ________  
 
+// gsap.registerPlugin(CustomEase)
+// CustomEase.create("customEase1", "M0,0 C0.61,0.01 0,1 1,1 ") // duration 1.2
+// CustomEase.create("customEase2", "M0,0 C0.91,0.04 0,1 1,1 ") // duration 1.4
 
 const sizes = {
     block: {
@@ -57,8 +60,8 @@ if(isHomepage) {
 }
 
 // used in setting tweens
-const viewportWidth = window.innerWidth || document.documentElement.clientWidth
-const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+// const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+// const viewportHeight = window.innerHeight || document.documentElement.clientHeight
 
 
 // DEFINE ANIMATIONS FOR INDIVIDUAL PAGES
@@ -102,6 +105,8 @@ function init() {
 
         if(isHome) {
             // Center of the viewport calculation
+            const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
             const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12 - item.posX
@@ -126,7 +131,8 @@ function init() {
                 width: sizes.large.width,
                 height: sizes.large.height,
                 x: viewportWidth * 0.1 - 12 - item.posX,
-                y: scrollY + viewportHeight * 0.64 - item.posY,
+                y: viewportHeight * 0.64 - document.querySelector('.img__wrapper').getBoundingClientRect().top, // this is relative to its original position
+                // y: scrollY + viewportHeight * 0.64 - item.posY,
                 rotate: "0",
                 ...commonOpts
             }, commonOpts.duration)
@@ -135,6 +141,8 @@ function init() {
             toProject = true
             returnToY = document.querySelector('.img__wrapper').getBoundingClientRect().top
         } else {
+            const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight
             const scrollX = window.scrollX || window.pageXOffset
             const scrollY = window.scrollY || window.pageYOffset
             const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2
@@ -201,3 +209,8 @@ function init() {
 window.addEventListener('load', function () {
     init()
 })
+
+// window.addEventListener('resize', function() {
+//     console.log('init is called')
+//     init()
+// })
