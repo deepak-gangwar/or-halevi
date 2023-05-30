@@ -16,9 +16,13 @@
 
 const sizes = {
     block: {
-        width: 360,
-        height: 360
+        width: window.innerWidth > window.innerHeight ? window.innerHeight / 1.7 : window.innerWidth / 1.7,
+        height: window.innerWidth > window.innerHeight ? window.innerHeight / 1.7 : window.innerWidth / 1.7
     },
+    // block: {
+    //     width: 360,
+    //     height: 360
+    // },
     large: {
         width: "80vw",
         height: "80vw"
