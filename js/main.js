@@ -30,6 +30,7 @@ const sizes = {
 }
 
 let currentHomeScrollPos = window.scrollY || window.pageYOffset
+let currentItemClasses = undefined
 
 // to store the current position wrt gallery 
 const item = {
@@ -53,6 +54,7 @@ function updateCurrentItem(e) {
     item.width = item.bounds.width
     item.height = item.bounds.height
     currentHomeScrollPos = window.scrollY || window.pageYOffset
+    currentItemClasses = item.el.classList
 }
 
 // const pageContainer = document.getElementById("intro")
@@ -72,16 +74,16 @@ function addEvents() {
 }
 addEvents()
 
-// used in setting tweens
-// const viewportWidth = window.innerWidth || document.documentElement.clientWidth
-// const viewportHeight = window.innerHeight || document.documentElement.clientHeight
-
 
 // DEFINE ANIMATIONS FOR INDIVIDUAL PAGES
 // ======================================
 
 function pageHomeEntry(tl) {
     tl.from('.home__title', { opacity: 0, duration: 0.8 }, 0)
+    const images = document.querySelectorAll('.img__wrapper')
+    images.forEach(image => {
+        if(image.classList.toString() !== currentItemClasses.toString()) tl.from(image, { opacity: 0, duration: 0.8 }, 0)
+    })
 }
 
 function pageHomeLeave() {}
@@ -130,6 +132,11 @@ function init() {
 
             tl.add(disableScroll())
             tl.to('.home__title', { opacity: 0, duration: 0.8 }, 0)
+
+            const images = document.querySelectorAll('.img__wrapper')
+            images.forEach(image => {
+                if(image !== item.el) tl.to(image, { opacity: 0, duration: 0.8 }, 0)
+            })
 
             // move image to the center, make it a block with some rotation
             tl.to(imgWrapper, { 
