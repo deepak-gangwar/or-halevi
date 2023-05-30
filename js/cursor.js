@@ -21,7 +21,11 @@ class Cursor {
     }
 
     bind() {
-        ['getPos', 'hideOnScroll', 'on', 'off', 'update'].forEach(fn => this[fn] = this[fn].bind(this))
+        ['getPos', 'hideOnScroll', 'on', 'off', 'update', 'reassignTriggers'].forEach(fn => this[fn] = this[fn].bind(this))
+    }
+
+    reassignTriggers() {
+        this.triggers = document.querySelectorAll('.img__wrapper')
     }
 
     createObserver() {

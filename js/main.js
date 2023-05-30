@@ -84,6 +84,9 @@ function pageHomeEntry(tl) {
     images.forEach(image => {
         if(image.classList.toString() !== currentItemClasses.toString()) tl.from(image, { opacity: 0, duration: 0.8 }, 0)
     })
+    tl.to(item.el, { pointerEvents: 'all', duration: 0 }, 0)
+    cursor.reassignTriggers()
+    cursor.addEventListeners()
 }
 
 function pageHomeLeave() {}
