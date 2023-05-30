@@ -88,8 +88,8 @@ let returnToY = item.posY  // to restore the position (scroll restoration)
 function init() {
 
     function pageLeaveAnim() {
-        const imgWrapper = item.el
-        // const imgWrapper = document.querySelector('.img__wrapper')
+        // const imgWrapper = item.el
+        const imgWrapper = document.querySelector('.img__wrapper')
         const projectImgWrapper = document.querySelector('.project__img')
         const page = document.querySelector('#intro')
         let isHome = page.classList.contains('is-home') ? true : false
