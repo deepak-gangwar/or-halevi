@@ -114,6 +114,7 @@ function init() {
             const midY = -document.querySelector('.img__wrapper').getBoundingClientRect().top + viewportHeight / 2 - sizes.block.height / 2
             currentHomeScrollPos = scrollY
 
+            tl.add(disableScroll())
             tl.to('.home__title', { opacity: 0, duration: 0.8 }, 0)
 
             // move image to the center, make it a block with some rotation
@@ -148,6 +149,8 @@ function init() {
             const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2
             const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2
 
+            tl.add(disableScroll())
+
             // shrink width to desired block
             tl.to(projectImgWrapper, { width: sizes.block.width, height: sizes.block.height, x: destinationX, y: destinationY, rotate: "15deg", ...commonOpts }, 0)
 
@@ -170,7 +173,7 @@ function init() {
         const tl = gsap.timeline()
         pageHomeEntry(tl)
         pageProjectEntry(tl)
-
+        tl.add(enableScroll())
         return tl
     }
 
@@ -209,8 +212,3 @@ function init() {
 window.addEventListener('load', function () {
     init()
 })
-
-// window.addEventListener('resize', function() {
-//     console.log('init is called')
-//     init()
-// })
