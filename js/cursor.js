@@ -51,8 +51,10 @@ class Cursor {
     }
 
     getPos(e) {
-        this.mouse[0] = e.clientX + window.scrollX
-        this.mouse[1] = e.clientY + window.scrollY
+        this.mouse[0] = e.clientX
+        this.mouse[1] = e.clientY
+        // this.mouse[0] = e.clientX + window.scrollX
+        // this.mouse[1] = e.clientY + window.scrollY
     }
 
     on() {

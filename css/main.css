@@ -15,6 +15,7 @@ body {
   color: #DBDBDB;
   background-color: #080808;
   min-height: 500vh;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -29,7 +30,8 @@ img {
 }
 
 .cursor {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   top: 0;
   left: 0;
   width: 6rem;
