@@ -1,1 +1,1 @@
-![banner](https://cdn.jsdelivr.net/gh/skarthikeyan96/node-koa-starter/banner.png)
+https://cdn.jsdelivr.net/gh/deepak-gangwar/or-halevi/cdn/mobileCheck.js
