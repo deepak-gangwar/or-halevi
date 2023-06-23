@@ -306,8 +306,12 @@ function pageHomeEntry(tl) {
   
   tl.from('.home__title', { opacity: 0, duration: 1 }, 0)
   tl.to(item.el, { pointerEvents: 'all', duration: 0 }, 0)
-  cursor?.reassignTriggers()
-  cursor?.addEventListeners()
+  
+  if (!isMobile()) {
+    cursor?.reassignTriggers()
+  	cursor?.addEventListeners()
+  }
+  
   
   // fade-in image subtitles on mobile
   if(isMobile()) {
@@ -518,23 +522,23 @@ function init() {
     transitions: [
       // this one is just to make use of the barba.hooks.beforeOnce etc.
       {
-        once() {
-            // console.log('this will be ignored')
-        },
+        //once() { console.log('this will be ignored') },
         beforeOnce(data) {
-          // Add the things in here that should run on first browser load. 
-          // This includes all the window load event listener function calls
-          //console.log('current namespace: ' + data.current.namespace)
+          // Add the things in here that should run on first browser load
+          // This includes the window load event listener function calls
         },
-        afterOnce() {
-          // console.log('shows up AFTER once transition')
-        }
+        //afterOnce() { console.log('shows up AFTER once transition') }
       },
       {
         name: 'seamless',
         async leave() {
-          cursor?.off()
-          cursor?.removeEventListeners()
+          if (!isMobile) {
+            cursor?.off()
+            cursor?.removeEventListeners()
+          }
+
+          //cursor?.off()
+          //cursor?.removeEventListeners()
           await pageLeaveAnim()
         },
         enter({ current, next }) { pageEntryAnim(current, next) }
