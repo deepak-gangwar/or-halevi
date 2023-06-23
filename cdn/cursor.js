@@ -133,7 +133,8 @@ class Cursor {
 //const cursor = new Cursor()
 let cursor
 function createCursor() {
-  if (!startFromCasePage) cursor = new Cursor()
+  // if (!startFromCasePage) cursor = new Cursor()
+  cursor = new Cursor()
 }
 
 //if(!isMobile()) window.addEventListener('load', createCursor)
