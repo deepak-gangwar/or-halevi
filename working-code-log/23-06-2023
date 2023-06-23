@@ -5,8 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
 <script src="https://abc7913.sg-host.com/minified/SplitText.min.js"></script>
-<script src="https://abc7913.sg-host.com/jsbrandinc/cursor.js"></script>
-
+<script src="https://cdn.jsdelivr.net/gh/deepak-gangwar/or-halevi@main/cdn/cursor.js"></script>
 
 <script>
 
@@ -371,15 +370,12 @@ function init() {
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight
       const scrollX = window.scrollX || window.pageXOffset
       const scrollY = window.scrollY || window.pageYOffset
-      //const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - 12 - item.posX  // in case of scrollbar
       const midX = scrollX + viewportWidth / 2 - sizes.block.width / 2 - item.posX
       const midY = - item.top + viewportHeight / 2 - sizes.block.height / 2
       currentHomeScrollPos = scrollY
 
-      //lenis?.stop()
       if(!isMobile()) lenis.stop()
-      //disableScroll()
-      //if(isMobile()) disableScroll()
+      disableScroll()
       
       tl.to('.container', { opacity: 0, duration: 0.6, }, 0)
       tl.to(item.el, { pointerEvents: 'none', duration: 0 }, 0)
@@ -407,8 +403,6 @@ function init() {
         height: sizes.large.height,
         x: viewportWidth * 0.1 - item.posX,
         y: yVal,
-        // y: viewportWidth * 0.35 - item.top, // this is relative to its original position
-        // y: viewportHeight * 0.64 - document.querySelector('.img__wrapper').getBoundingClientRect().top, 
         rotate: "0",
         ...commonOpts
       }, commonOpts.duration)
@@ -432,10 +426,8 @@ function init() {
       const destinationX = scrollX + viewportWidth / 2 - sizes.block.width / 2
       const destinationY = scrollY + viewportHeight / 2 - sizes.block.height / 2
 
-      //lenis?.stop()
       if(!isMobile()) lenis.stop()
-      //disableScroll()
-      //if(isMobile()) disableScroll()
+      disableScroll()
       
       // overlay to blur other content of the page
       const overlay = document.createElement('div')
@@ -467,8 +459,6 @@ function init() {
     if (current.container.dataset.barbaNamespace === "case") pageHomeEntry(tl)
     if (current.container.dataset.barbaNamespace === "home") pageProjectEntry(tl)
     enableScroll()
-    //if(isMobile()) enableScroll()
-    //lenis.stop()
     addEvents()
     //addNavEvents()
     return tl
@@ -481,6 +471,7 @@ function init() {
   barba.hooks.beforeOnce((data) => {
     barbaNs = document.getElementById("intro").dataset.barbaNamespace
     nextProjectHoverAnim(barbaNs)
+    if(!isMobile() && barbaNs === 'home') createCursor()
   })
 
   // barba.hooks.before((data) => { if (data.current.namespace === "case" && !hasTransitionRunOnce) console.log('run fade') })
@@ -511,10 +502,8 @@ function init() {
     cleanGSAP()
     gsapAnimations()
 
-    //lenis?.stop()
     if(!isMobile()) lenis.stop()
-    //disableScroll()
-    //if(isMobile()) disableScroll()
+    disableScroll()
     setTimeout(() => { if(!isMobile()) smoothScroll() }, 600)
   })
 
@@ -522,23 +511,20 @@ function init() {
     transitions: [
       // this one is just to make use of the barba.hooks.beforeOnce etc.
       {
-        //once() { console.log('this will be ignored') },
+        once() { /*console.log('this will be ignored')*/ },
         beforeOnce(data) {
           // Add the things in here that should run on first browser load
           // This includes the window load event listener function calls
         },
-        //afterOnce() { console.log('shows up AFTER once transition') }
+        afterOnce() { /*console.log('shows up AFTER once transition')*/ }
       },
       {
         name: 'seamless',
         async leave() {
-          if (!isMobile) {
-            cursor?.off()
-            cursor?.removeEventListeners()
+          if (!isMobile()) {
+            cursor.off()
+            cursor.removeEventListeners()
           }
-
-          //cursor?.off()
-          //cursor?.removeEventListeners()
           await pageLeaveAnim()
         },
         enter({ current, next }) { pageEntryAnim(current, next) }
@@ -548,14 +534,12 @@ function init() {
         name: 'fade',
         from: {
           custom: ({ trigger }) => {
-            return startFromCasePage;
+            return startFromCasePage
           },
         },
         async leave() {
-          //lenis?.stop()
           if(!isMobile()) lenis.stop()
-          //disableScroll()
-          //if(isMobile()) disableScroll()
+          disableScroll()
           await gsap.to(document.body, { opacity: 0, duration: 0.6 })
         },
         enter() {
@@ -567,9 +551,7 @@ function init() {
 
           lenis?.destroy()
           enableScroll()
-          if(isMobile()) enableScroll()
           setTimeout(() => { if(!isMobile()) smoothScroll() }, 1500)
-          //window.scrollTo(0, currentHomeScrollPos)
         },
       }
     ]
