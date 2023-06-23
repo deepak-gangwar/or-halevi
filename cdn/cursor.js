@@ -133,6 +133,9 @@ class Cursor {
 //const cursor = new Cursor()
 let cursor
 function createCursor() {
+  cursor?.off()
+  cursor?.removeEventListeners()
+  cursor?.cancelAnimationFrame()
   // if (!startFromCasePage) cursor = new Cursor()
   cursor = new Cursor()
 }
