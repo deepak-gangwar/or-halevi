@@ -123,7 +123,8 @@ gsap.utils.toArray("[data-speed]").forEach(el => {
   //ScrollTrigger.config({ ignoreMobileResize: true })
 }
 
-window.addEventListener('load', gsapAnimations)
+//window.addEventListener('load', gsapAnimations)
+window.addEventListener('load', () => { setTimeout(() => { gsapAnimations() }, 1500)})
 
  
 // NEXT PROJECTS ON HOVER
@@ -192,4 +193,5 @@ function gsapHeroAnimations() {
   })
 }
 
-window.addEventListener('load', gsapHeroAnimations)
+// window.addEventListener('load', gsapHeroAnimations)
+window.addEventListener('load', () => { setTimeout(() => { gsapHeroAnimations() }, 1500)})
