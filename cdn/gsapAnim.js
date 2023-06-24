@@ -124,7 +124,7 @@ gsap.utils.toArray("[data-speed]").forEach(el => {
 }
 
 //window.addEventListener('load', gsapAnimations)
-window.addEventListener('load', () => { setTimeout(() => { gsapAnimations() }, 1500)})
+window.addEventListener('load', () => { setTimeout(() => { gsapAnimations() }, 3600)})
 
  
 // NEXT PROJECTS ON HOVER
@@ -174,6 +174,7 @@ function nextProjectHoverAnim(namespace) {
 
 
 function gsapHeroAnimations() {
+  console.log('hero animations is called')
   gsap.utils.toArray('.hero-split').forEach(heading => {
 	const heroChildSplit = new SplitText(heading, {
       type: "lines",
@@ -194,4 +195,4 @@ function gsapHeroAnimations() {
 }
 
 // window.addEventListener('load', gsapHeroAnimations)
-window.addEventListener('load', () => { setTimeout(() => { gsapHeroAnimations() }, 1500)})
+window.addEventListener('load', () => { setTimeout(() => { gsapHeroAnimations() }, 3600)})
