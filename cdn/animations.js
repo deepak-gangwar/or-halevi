@@ -124,7 +124,7 @@ gsap.utils.toArray("[data-speed]").forEach(el => {
 }
 
 //window.addEventListener('load', gsapAnimations)
-window.addEventListener('load', () => { setTimeout(() => { gsapAnimations() }, 3600)})
+//window.addEventListener('load', () => { setTimeout(() => { gsapAnimations() }, 3600)})
 
  
 // NEXT PROJECTS ON HOVER
@@ -195,4 +195,4 @@ function gsapHeroAnimations() {
 }
 
 // window.addEventListener('load', gsapHeroAnimations)
-window.addEventListener('load', () => { setTimeout(() => { gsapHeroAnimations() }, 3600)})
+//window.addEventListener('load', () => { setTimeout(() => { gsapHeroAnimations() }, 3600)})
