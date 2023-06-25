@@ -57,7 +57,7 @@ function preloaderAnim() {
   preloaderTl.set('.hero-split', { opacity: 1, duration: 0 })
   preloaderTl.call(() => { gsapAnimations() })
   preloaderTl.call(() => { gsapHeroAnimations() })
-  preloaderTl.call(() => { preloader.remove() })
+  // preloaderTl.call(() => { preloader.remove() })
   preloaderTl.call(() => { enableScroll() })
   preloaderTl.call(() => { if (!isMobile()) lenis.start() })
 }
