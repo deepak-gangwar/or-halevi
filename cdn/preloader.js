@@ -1,8 +1,8 @@
 var loader__preloader = document.querySelector(".preloader"),
-  loader__underlay = preloader.querySelector(".preloader__underlay"),
-  loader__wrapper = preloader.querySelector(".preloader__wrap"),
-  loader__percent = preloader.querySelector(".preloader__num"),
-  loader__loadbar = preloader.querySelector("#preloader__num2")
+  loader__underlay = loader__preloader.querySelector(".preloader__underlay"),
+  loader__wrapper = loader__preloader.querySelector(".preloader__wrap"),
+  loader__percent = loader__preloader.querySelector(".preloader__num"),
+  loader__loadbar = loader__preloader.querySelector("#preloader__num2")
 
 disableScroll()
 
@@ -48,7 +48,7 @@ function preloaderAnim() {
   preloaderTl.set('.hero-split', { opacity: 1, duration: 0 })
   preloaderTl.call(() => { gsapAnimations() })
   preloaderTl.call(() => { gsapHeroAnimations() })
-  preloaderTl.call(() => { preloader.remove() })
+  preloaderTl.call(() => { loader__preloader.remove() })
   preloaderTl.call(() => { enableScroll() })
   preloaderTl.call(() => { if (!isMobile()) lenis.start() })
 }
