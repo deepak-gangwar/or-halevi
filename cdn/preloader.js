@@ -8,7 +8,6 @@ disableScroll()
 function preloaderAnim() {
   disableScroll()
   if (!isMobile()) lenis.stop()
-  console.log('preloader anim')
   // document.body.classList.remove('is-loading')
   const preloaderTl = new gsap.timeline()
 
@@ -30,8 +29,10 @@ function preloaderAnim() {
   )
 
   if (window.innerWidth > 650) {
-    preloaderTl.to(wrapper, { top: "calc(5vw - 12px)", left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
+    // preloaderTl.to(wrapper, { top: "calc(5vw - 12px)", left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
+    preloaderTl.to(wrapper, { top: "0", left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
   } else {
+    // preloaderTl.to(wrapper, { top: "calc(5vw + 21px)", left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
     preloaderTl.to(wrapper, { top: "calc(5vw + 21px)", left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
   }
 
