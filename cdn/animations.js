@@ -174,7 +174,6 @@ function nextProjectHoverAnim(namespace) {
 
 
 function gsapHeroAnimations() {
-  console.log('hero animations is called')
   gsap.utils.toArray('.hero-split').forEach(heading => {
 	const heroChildSplit = new SplitText(heading, {
       type: "lines",
