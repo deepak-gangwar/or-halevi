@@ -28,6 +28,7 @@ function gsapAnimations() {
           trigger: title,
           start: "bottom bottom",
           end: "bottom bottom",
+	  markers: true,
         },
         duration: 1.2,
         yPercent: 220,
