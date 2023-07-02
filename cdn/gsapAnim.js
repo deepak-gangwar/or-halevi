@@ -10,36 +10,68 @@ const cleanGSAP = () => {
 var childSplit = []
 var parentSplit = []
 
+gsap.registerPlugin(SplitText, ScrollTrigger)
 
-function gsapAnimations() {
-  gsap.registerPlugin(SplitText, ScrollTrigger)
-
+function gsapSplitAnimations() {
   gsap.utils.toArray("h1,h2,h3,h4,h5,p").forEach((title) => {
     if(!title.classList.contains('hero-split')) {
-      childSplit = new SplitText(title, {
-        type: "lines",
-        linesClass: "split-child",
-      })
-      parentSplit = new SplitText(title, {
-        linesClass: "split-parent",
-      })
+      if(!title.classList.contains('js-split')) {
+        childSplit = new SplitText(title, {
+          type: "lines",
+          linesClass: "split-child",
+        })
+        parentSplit = new SplitText(title, {
+          linesClass: "split-parent",
+        })
 
-      gsap.from(childSplit.lines, {
-        scrollTrigger: {
-          trigger: title,
-          start: "bottom bottom",
-          end: "bottom bottom",
-        },
-        duration: 1.2,
-        yPercent: 220,
-        ease: "power4.out",
-        skewY: 7,
-        stagger: 0.1,
-      }) 
+        gsap.from(childSplit.lines, {
+          scrollTrigger: {
+            trigger: title,
+            start: "bottom bottom",
+            end: "bottom bottom",
+          },
+          duration: 1.2,
+          yPercent: 220,
+          ease: "power4.out",
+          skewY: 7,
+          stagger: 0.1,
+        })
+      }
 	}
   });
- 
-  
+}
+
+window.addEventListener('load', gsapSplitAnimations)
+
+function gsapFirstParaAnimations() {
+  gsap.utils.toArray(".js-split").forEach((title) => {
+    childSplit = new SplitText(title, {
+      type: "lines",
+      linesClass: "split-child",
+    })
+    parentSplit = new SplitText(title, {
+      linesClass: "split-parent",
+    })
+
+    gsap.from(childSplit.lines, {
+      scrollTrigger: {
+        trigger: title,
+        start: "bottom bottom",
+        end: "bottom bottom",
+      },
+      duration: 1.2,
+      yPercent: 220,
+      ease: "power4.out",
+      skewY: 7,
+      stagger: 0.1,
+    }) 
+  });
+}
+
+window.addEventListener('load', gsapFirstParaAnimations)
+
+
+function gsapAnimations() {
   // IMAGES ENTRANCE EFFECT
   
   gsap.utils.toArray(".fade img, video").forEach((img) => {
