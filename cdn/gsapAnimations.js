@@ -122,9 +122,14 @@ gsap.utils.toArray("[data-speed]").forEach(el => {
 */
   
   gsap.from(".partners-logo", {
-    scrollTrigger: ".all-partners",
-    start: "top top",
-    end: "bottom bottom",
+    // scrollTrigger: ".all-partners",
+    // start: "top top",
+    // end: "bottom bottom",
+    scrollTrigger: {
+      trigger: ".all-partners",
+      start: "top top",
+      end: "bottom bottom",
+    },
     duration: 1,
     yPercent: 30,
     opacity: 0,
