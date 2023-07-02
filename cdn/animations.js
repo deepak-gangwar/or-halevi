@@ -10,9 +10,9 @@ const cleanGSAP = () => {
 var childSplit = []
 var parentSplit = []
 
+gsap.registerPlugin(SplitText, ScrollTrigger)
 
 function gsapAnimations() {
-  gsap.registerPlugin(SplitText, ScrollTrigger)
 
   gsap.utils.toArray("h1,h2,h3,h4,h5,p").forEach((title) => {
     if(!title.classList.contains('hero-split')) {
