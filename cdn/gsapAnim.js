@@ -10,7 +10,9 @@ const cleanGSAP = () => {
 var childSplit = []
 var parentSplit = []
 
-function gsapAnimations() {
+
+function gsapAnimations() {}
+function gsapAnimations2() {
   gsap.registerPlugin(SplitText, ScrollTrigger)
 
   gsap.utils.toArray("h1,h2,h3,h4,h5,p").forEach((title) => {
@@ -173,7 +175,8 @@ function nextProjectHoverAnim(namespace) {
 //window.addEventListener('load', nextProjectHoverAnim)
 
 
-function gsapHeroAnimations() {
+function gsapHeroAnimations() {}
+function gsapHeroAnimations2() {
   console.log('hero animations is called')
   gsap.utils.toArray('.hero-split').forEach(heading => {
 	const heroChildSplit = new SplitText(heading, {
