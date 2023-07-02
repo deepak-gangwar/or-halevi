@@ -12,8 +12,7 @@ var parentSplit = []
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-function gsapAnimations() {
-
+function gsapSplitAnimations() {
   gsap.utils.toArray("h1,h2,h3,h4,h5,p").forEach((title) => {
     if(!title.classList.contains('hero-split')) {
       childSplit = new SplitText(title, {
@@ -38,8 +37,11 @@ function gsapAnimations() {
       }) 
 	}
   });
- 
-  
+}
+
+window.addEventListener('load', gsapSplitAnimations)
+
+function gsapAnimations() {
   // IMAGES ENTRANCE EFFECT
   
   gsap.utils.toArray(".fade img, video").forEach((img) => {
