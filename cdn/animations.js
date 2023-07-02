@@ -10,6 +10,7 @@ const cleanGSAP = () => {
 var childSplit = []
 var parentSplit = []
 
+
 function gsapAnimations() {
   gsap.registerPlugin(SplitText, ScrollTrigger)
 
@@ -123,9 +124,7 @@ gsap.utils.toArray("[data-speed]").forEach(el => {
   //ScrollTrigger.config({ ignoreMobileResize: true })
 }
 
-//window.addEventListener('load', gsapAnimations)
-//window.addEventListener('load', () => { setTimeout(() => { gsapAnimations() }, 3600)})
-
+window.addEventListener('load', gsapAnimations)
  
 // NEXT PROJECTS ON HOVER
 // ======================
@@ -170,9 +169,6 @@ function nextProjectHoverAnim(namespace) {
   }
 }
 
-//window.addEventListener('load', nextProjectHoverAnim)
-
-
 function gsapHeroAnimations() {
   gsap.utils.toArray('.hero-split').forEach(heading => {
 	const heroChildSplit = new SplitText(heading, {
@@ -193,5 +189,4 @@ function gsapHeroAnimations() {
   })
 }
 
-// window.addEventListener('load', gsapHeroAnimations)
-//window.addEventListener('load', () => { setTimeout(() => { gsapHeroAnimations() }, 3600)})
+window.addEventListener('load', gsapHeroAnimations)
