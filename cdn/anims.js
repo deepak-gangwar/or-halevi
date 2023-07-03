@@ -20,9 +20,9 @@ function gsapSplitAnimations() {
           type: "lines",
           linesClass: "split-child",
         })
-        parentSplit = new SplitText(title, {
-          linesClass: "split-parent",
-        })
+        // parentSplit = new SplitText(title, {
+          // linesClass: "split-parent",
+        // })
 
         gsap.from(childSplit.lines, {
           scrollTrigger: {
