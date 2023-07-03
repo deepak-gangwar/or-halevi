@@ -21,7 +21,7 @@ function gsapSplitAnimations() {
           linesClass: "split-child",
         })
         parentSplit = new SplitText(title, {
-	      type: "lines",
+	  type: "lines",
           linesClass: "split-parent",
         })
 
@@ -203,7 +203,7 @@ function nextProjectHoverAnim(namespace) {
 
 function gsapHeroAnimations() {
   gsap.utils.toArray('.hero-split').forEach(heading => {
-	const heroChildSplit = new SplitText(heading, {
+    const heroChildSplit = new SplitText(heading, {
       type: "lines",
       linesClass: "split-child",
     })
