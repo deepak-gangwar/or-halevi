@@ -40,8 +40,7 @@ function gsapSplitAnimations() {
 	}
   });
 }
-
-window.addEventListener('load', gsapSplitAnimations)
+// window.addEventListener('load', gsapSplitAnimations)
 
 function gsapFirstParaAnimations() {
   gsap.utils.toArray(".js-split").forEach((title) => {
@@ -67,8 +66,7 @@ function gsapFirstParaAnimations() {
     }) 
   });
 }
-
-window.addEventListener('load', gsapFirstParaAnimations)
+// window.addEventListener('load', gsapFirstParaAnimations)
 
 
 function gsapAnimations() {
@@ -102,37 +100,22 @@ function gsapAnimations() {
   
 
   /*
-// PARALLAX EFFECT
-
-gsap.registerPlugin(ScrollTrigger);
-
-gsap.utils.toArray("[data-speed]").forEach(el => {
-  gsap.to(el, {
-    y: function() {return (1 - parseFloat(el.getAttribute("data-speed"))) * (ScrollTrigger.maxScroll(window) - (this.scrollTrigger ? this.scrollTrigger.start : 0))},
-    ease: "none",
-    scrollTrigger: {
-      trigger: el,
-      start: "top center",
-      end: "max",
-      invalidateOnRefresh: true,
-      scrub: true
-    }
+  // PARALLAX EFFECT
+  gsap.utils.toArray("[data-speed]").forEach(el => {
+    gsap.to(el, {
+      y: function() {return (1 - parseFloat(el.getAttribute("data-speed"))) * (ScrollTrigger.maxScroll(window) - (this.scrollTrigger ? this.scrollTrigger.start : 0))},
+      ease: "none",
+      scrollTrigger: {
+        trigger: el,
+        start: "top center",
+        end: "max",
+        invalidateOnRefresh: true,
+        scrub: true
+      }
+    });
   });
-});
-*/
-  
-  gsap.from(".partners-logo", {
-    scrollTrigger: ".all-partners",
-    start: "top top",
-    end: "bottom bottom",
-    duration: 1,
-    yPercent: 30,
-    opacity: 0,
-    ease: "power4.out",
-    stagger: {
-      amount: 1,
-    }
-  });
+  */
+
   
   if(!isMobile()) {
     gsap
@@ -155,8 +138,23 @@ gsap.utils.toArray("[data-speed]").forEach(el => {
   //ScrollTrigger.normalizeScroll(true)
   //ScrollTrigger.config({ ignoreMobileResize: true })
 }
-
-window.addEventListener('load', gsapAnimations)
+// window.addEventListener('load', gsapAnimations)
+  
+function gsapPartnersAnim() {
+  gsap.from(".partners-logo", {
+    scrollTrigger: ".all-partners",
+    start: "top top",
+    end: "bottom bottom",
+    duration: 1,
+    yPercent: 30,
+    opacity: 0,
+    ease: "power4.out",
+    stagger: {
+      amount: 1,
+    }
+  });
+}
+//window.addEventListener('load', gsapPartnersAnim)
  
 // NEXT PROJECTS ON HOVER
 // ======================
@@ -220,5 +218,4 @@ function gsapHeroAnimations() {
     })
   })
 }
-
-window.addEventListener('load', gsapHeroAnimations)
+// window.addEventListener('load', gsapHeroAnimations)
