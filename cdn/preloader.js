@@ -4,12 +4,17 @@ var loader__preloader = document.querySelector(".preloader"),
   loader__percent = loader__preloader.querySelector(".preloader__num"),
   loader__loadbar = loader__preloader.querySelector("#preloader__num2")
 
-disableScroll()
+//disableScroll()
+//window.history.scrollRestoration = "manual"
+window.addEventListener('load', () => { window.history.scrollRestoration = "manual" })
+
+//if (history.scrollRestoration) {
+//  history.scrollRestoration = "manual";
+//}
 
 function preloaderAnim() {
   disableScroll()
   if (!isMobile()) lenis.stop()
-  // document.body.classList.remove('is-loading')
   
   const preloaderTl = new gsap.timeline()
 
@@ -46,7 +51,7 @@ function preloaderAnim() {
   preloaderTl.to(loader__preloader, { opacity: 0, duration: 0.5 }, "label2")
   preloaderTl.to('.logo', { opacity: 1, duration: 0.5 }, "label2")
   preloaderTl.set('.hero-split', { opacity: 1, duration: 0 })
-  preloaderTl.call(() => { gsapAnimations() })
+  //preloaderTl.call(() => { gsapAnimations() })
   preloaderTl.call(() => { gsapHeroAnimations() })
   preloaderTl.call(() => { loader__preloader.remove() })
   preloaderTl.call(() => { enableScroll() })
