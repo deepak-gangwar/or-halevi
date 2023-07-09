@@ -119,7 +119,8 @@ function gsapAnimations() {
   */
 
   
-  if(!isMobile()) {
+  // if(!isMobile()) {
+  if(window.innerWidth > 650) {
     gsap
     .timeline({
       scrollTrigger: {
