@@ -49,12 +49,12 @@ function preloaderAnim() {
 
   preloaderTl.set('.hero-split', { opacity: 0, duration: 0 }, 0)
   preloaderTl.set('.logo', { opacity: 0, duration: 0 }, 0)
-  //preloaderTl.to(loader__preloader, { opacity: 0, duration: 0.5 }, "label2")
+  preloaderTl.to(loader__preloader, { opacity: 0, duration: 0.5 }, "label2")
   preloaderTl.to('.logo', { opacity: 1, duration: 0.5 }, "label2")
   preloaderTl.set('.hero-split', { opacity: 1, duration: 0 })
   //preloaderTl.call(() => { gsapAnimations() })
   preloaderTl.call(() => { gsapHeroAnimations() })
-  //preloaderTl.call(() => { loader__preloader.remove() })
+  preloaderTl.call(() => { loader__preloader.remove() })
   preloaderTl.call(() => { enableScroll() })
   preloaderTl.call(() => { if (!isMobile()) lenis.start() })
 }
