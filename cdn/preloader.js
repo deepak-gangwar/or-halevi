@@ -31,7 +31,8 @@ function preloaderAnim() {
     }
   )
 
-  let yVal = window.innerWidth > 650 ? "-11px" : 0
+  // let yVal = window.innerWidth > 650 ? "-11px" : 0
+  let yVal = document.documentElement.clientWidth < 769 ? "7.4vw" : "-11px"
   preloaderTl.to(loader__wrapper, { top: yVal, left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
 
   preloaderTl.fromTo(
