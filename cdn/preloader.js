@@ -32,7 +32,7 @@ function preloaderAnim() {
   )
 
   // let yVal = window.innerWidth > 650 ? "-11px" : 0
-  let yVal = document.documentElement.clientWidth < 769 ? "7.4vw" : "-11px"
+  let yVal = document.documentElement.clientWidth < 767 ? "7.4vw" : "-11px"
   preloaderTl.to(loader__wrapper, { top: yVal, left: "50%", translateX: "-50%", duration: 2, ease: "expo.inOut" }, "label1")
 
   preloaderTl.fromTo(
@@ -49,12 +49,12 @@ function preloaderAnim() {
 
   preloaderTl.set('.hero-split', { opacity: 0, duration: 0 }, 0)
   preloaderTl.set('.logo', { opacity: 0, duration: 0 }, 0)
-  preloaderTl.to(loader__preloader, { opacity: 0, duration: 0.5 }, "label2")
+  //preloaderTl.to(loader__preloader, { opacity: 0, duration: 0.5 }, "label2")
   preloaderTl.to('.logo', { opacity: 1, duration: 0.5 }, "label2")
   preloaderTl.set('.hero-split', { opacity: 1, duration: 0 })
   //preloaderTl.call(() => { gsapAnimations() })
   preloaderTl.call(() => { gsapHeroAnimations() })
-  preloaderTl.call(() => { loader__preloader.remove() })
+  //preloaderTl.call(() => { loader__preloader.remove() })
   preloaderTl.call(() => { enableScroll() })
   preloaderTl.call(() => { if (!isMobile()) lenis.start() })
 }
